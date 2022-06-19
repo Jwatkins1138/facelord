@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class='has-text-white has-background-dark'>
   <head>
     <title>Facelord</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -26,10 +26,12 @@
           <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
               <%= link_to 'logout', destroy_user_session_path, class: 'navbar-item' %>
-              <%= link_to 'my profile', users_path(current_user), class: 'navbar-item' %>
-              <%= link_to 'new post', new_posts_path, class: 'navbar-item' %>
+              <%= link_to 'my profile', user_path(current_user), class: 'navbar-item' %>
+              <%= link_to 'new post', new_post_path, class: 'navbar-item' %>
               <a class="navbar-item">
-                Documentation
+                <div class='icon-text'>
+                  <span class='icon has-text-success'><i class="fa-thin fa-square-up-right" aria-hidden='true' ></i></span>
+                </div>  
               </a>
             </div>
           </div>  
@@ -37,7 +39,9 @@
       </nav>
     </div>      
   </section>
+  <div class='container'>
     <%= yield %>
+  </div>  
   </body>
   <% else%>
   <section class='hero is-black is-fullheight'>

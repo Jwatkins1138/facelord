@@ -1,0 +1,27 @@
+<% @posts.each do |p| %>
+<div id='feed_card' class='card has-background-black has-text-white px-5 pt-5 pb-5'>
+  <div class='card-header'>
+    <p class='card-header-title has-text-white'>
+      <%= p.user.email %>
+    </p>
+    <p class='card-header-title'>
+      <%= p.user.email %>
+    </p>  
+  </div>  
+  <div class='card-content'>
+    <p>
+      <%= p.body %>
+    </p>
+    <p class='has-text-primary-light'>
+      <%= p.created_at%>
+    </p>
+  </div>
+  <div class='card-footer has-text-success'>
+    <div class='card-footer-item'><p class='has-text-danger'>likes: <%= p.comments.count %></p></div>
+    <div class='card-footer-item'><p>comments: <%= p.comments.count %></p> </div>
+    <%= link_to 'view post', post_path(p), class: 'card-footer-item' %>
+  </div>  
+</div>
+<nav class='level'>
+</nav>  
+<% end %>
