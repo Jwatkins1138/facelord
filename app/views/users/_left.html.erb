@@ -1,0 +1,7 @@
+<div class='card has-background-black has-text-success'>
+  <% @user.friendships.pending.each do |f| %>
+    <p>requested<%= f.inviter.email %></p>
+    <%= button_to 'approve', accept_friend_path(f), method: :post %>
+    <%= button_to 'reject', destroy_friendship_path(f), method: :post %>
+  <% end %>
+</div>

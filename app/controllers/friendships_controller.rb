@@ -8,6 +8,11 @@ class FriendshipsController < ApplicationController
     @friendship.save
   end
 
+  def destroy
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
+  end
+
 
   private
 

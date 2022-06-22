@@ -1,8 +1,28 @@
-<div class='card has-background-black has-text-success'>
- 
-  <% @user.friendships.pending.each do |f| %>
-    <p>requested<%= f %></p>
-    <%= button_to 'approve', accept_friend_path(f), method: :post %>
+<%= @user.email %>
+<div class='columns'>
+  <% if @user == current_user %>
+  <div class='level'>
+  </div>
+  <div class='column has-background-black has-text-success'>
+    <%= render 'left' %>
+  </div>
+  <div class='column is-three-fifths has-background-black has-text-success'>
+    <%= render 'profile' %>
+  </div>
+  <div class='column has-background-black has-text-success'>
+    <%= render 'right' %>
+  </div>
+  <% else %>
+  <div class='level'>
+  </div>
+  <div class='column'>
+    <%= @user.email %>
+  </div>
+  <div class='column is-three-fifths'>
+    <%= @user.email %>
+  </div>
+  <div class='column'>
+    <%= @user.email %>
+  </div>
   <% end %>
-
 </div>

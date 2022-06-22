@@ -1,0 +1,5 @@
+<div class='card has-background-black has-text-success'>
+  <% @user.friends.each do |f| %>
+    <p>friends<%= f.email %></p>
+  <% end %>
+</div>

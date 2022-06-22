@@ -29,9 +29,11 @@ class User < ApplicationRecord
                 join_table: :friendships,
                 foreign_key: :accepting_friend_id,
                 association_foreign_key: :inviting_friend_id              
-                  
+  
+  # scope :accepted, joins(:friendships).merge(Friendship.accepted)
+
   def friends
-    (invited_friends + accepted_friends).flatten.uniq
+    (invited_friends.joins(:friendships).merge(Friendship.accepted) + accepted_friends.joins(:friendships).merge(Friendship.accepted)).flatten.uniq
   end
 
 
