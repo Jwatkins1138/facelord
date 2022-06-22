@@ -19,6 +19,14 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def add_like
+    @post = Post.find(params[:id])
+    @like = @post.post_likes.build
+    @like.user_id = current_user.id
+    @like.save
+    redirect_to root_path
+  end
+
   private
 
   def post_params

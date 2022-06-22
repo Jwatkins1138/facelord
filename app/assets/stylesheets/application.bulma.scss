@@ -2,7 +2,6 @@
 
 // Import a Google Font
 // @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-
 // Set your brand colors
 // $purple: #8A4D76;
 // $pink: #FA7C91;
@@ -36,8 +35,8 @@
 // @import "bulma/sass/layout/hero.sass";
 // @import "bulma/sass/layout/section.sass";
 
+
 @import 'bulma/bulma';
-@import "font-awesome";
 
 .card {
   border: solid 2px orangered !important;

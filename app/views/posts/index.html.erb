@@ -1,9 +1,11 @@
-<div class='columns'>
-  <div class='column is-one-fifth px-5 pt-5'>
+<div class='columns px-5 pt-5'>
+  <div class='column'>
+    <%= render 'left'%>
   </div>
-  <div class='column is-three-fifths px-5 pt-5'>
-  <%= render 'feed' %>
+  <div class='column is-three-fifths'>  
+    <%= render 'feed'%>
   </div>
-  <div class='is-one-fifth px-5 pt-5'>
+  <div class='column'>
+    <%= render 'right' %>
   </div>
 </div>
