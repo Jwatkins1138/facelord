@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all.order( 'created_at DESC' )
+    if user_signed_in?
+      @posts = Post.where(user_id: current_user.feed).order( 'created_at DESC' )
+    else 
+      @posts = Post.all.order( 'created_at DESC' )
+    end    
   end
 
   def show

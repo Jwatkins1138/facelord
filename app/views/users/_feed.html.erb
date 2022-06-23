@@ -8,9 +8,16 @@
           </figure>
         </div>
         <p class='card-header-title has-text-white'>
-          <%= u.email %>
+          <%= u.name %>
         </p>
-        <%= button_to 'add friend', request_friend_path(u), method: :post %>
+        <% if current_user.pending_accept_friends.include?(u) %>
+          <%# need to pull related friendship object %>
+          <%= button_to 'accept', accept_friend_path(current_user.friendships.by_inviter(u).first), method: :post %>
+        <% elsif current_user.pending_invite_friends.include?(u)%>
+          <%= button_to 'invited' %>
+        <% else %>
+          <%= button_to 'add friend', request_friend_path(u), method: :post %>
+        <% end %>  
       </div>  
     </div>
   <% end %>

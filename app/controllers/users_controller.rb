@@ -4,7 +4,17 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = (User.all.excluding(current_user.friends, current_user))
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update((user_params))
+    redirect_to user_path(@user)
   end
 
   def request_friend
@@ -22,5 +32,11 @@ class UsersController < ApplicationController
     @request.status = 'accepted'
     @request.save
     redirect_to user_path(current_user)
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :bio, :location, :birthday, :company)
   end
 end

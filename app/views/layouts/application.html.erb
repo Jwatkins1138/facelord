@@ -23,7 +23,9 @@
           <div id="navbarMenuHeroA" class="navbar-menu">
             <div class="navbar-end">
               <%= link_to 'logout', destroy_user_session_path, class: 'navbar-item' %>
-              <%= link_to 'my profile', user_path(current_user), class: 'navbar-item' %>
+              <% if user_signed_in? %>
+                <%= link_to 'my profile', user_path(current_user), class: 'navbar-item' %>
+              <% end %>  
               <%= link_to 'new post', new_post_path, class: 'navbar-item' %>
               <a class="navbar-item">
                 <div class='icon-text'>

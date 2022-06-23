@@ -1,7 +1,19 @@
-<div class='card has-background-black has-text-success'>
+<aside class='menu has-background-black has-text-white'>
+  <p class='menu-label'>
+  <%= @user.email %>'s profile
+  </p>
+  <ul class='menu-list has-text-success'>
+    <li><%= link_to 'edit profile', edit_user_path(@user), class: 'has-text-success' %></li>
+    <li><a class='has-text-success'><%= @user.bio %></a></li>
+    <li><a class='has-text-success'><%= @user.location %></a></li>
+    <li><a class='has-text-success'><%= @user.birthday %></a></li>
+    <li><a class='has-text-success'><%= @user.company %></a></li>
+    <li><a class='has-text-success'>other stuff</a></li>
+   
+  </ul>
+</aside>  
   <% @user.friendships.pending.each do |f| %>
     <p>requested<%= f.inviter.email %></p>
     <%= button_to 'approve', accept_friend_path(f), method: :post %>
     <%= button_to 'reject', destroy_friendship_path(f), method: :post %>
   <% end %>
-</div>

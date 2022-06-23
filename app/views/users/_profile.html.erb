@@ -1,0 +1,45 @@
+<% @user.posts.each do |p| %>
+<div id='feed_card' class='card has-background-black has-text-white px-5 pt-5 pb-5'>
+  <div class='card-header'>
+    <div class="card-image">
+      <figure class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder image">
+      </figure>
+    </div>
+    <p class='card-header-title has-text-white'>
+      <%= p.user.email %>
+    </p>
+     
+  </div>  
+  <div class='card-content'>
+    <p>
+      <%= p.body %>
+    </p>
+    <p class='has-text-primary-light'>
+      <%= p.created_at%>
+    </p>
+  </div>
+  <div class='card-footer has-text-success'>
+    <div class='card-footer-item'>
+    <% if user_signed_in? && current_user.liked_posts.include?(p) %>
+      <button class='button is-black'><span class='has-text-danger'>♥</span></button>
+    <% else %>
+      <%= button_to post_add_like_path(p), method: :post, class: 'button is-black' do %>
+        <span class='has-text-danger'>♡</span>
+      <% end %>  
+    <% end %>
+    <p class='has-text-danger'>likes: <%= p.post_likes.count %></p>
+    </div>
+    <div class='card-footer-item'>
+      <%= button_to '💬', new_post_comment_path(p), method: :get, class: 'button is-black has-text-success' %>
+      <p>comments: <%= p.comments.count %></p> 
+    </div>
+    <div class='card-footer-item'>
+      <%= button_to '👁', post_path(p), method: :get, class: 'button is-black has-text-info' %>
+      <p class='has-text-info'>view post</p>
+    </div>  
+  </div>  
+</div>
+<nav class='level'>
+</nav>  
+<% end %>

@@ -6,4 +6,6 @@ class Friendship < ApplicationRecord
   
   scope :pending, -> { where(status: 'pending') }
   scope :accepted, -> { where(status: 'accepted') }
+  scope :by_inviter, ->(user) { where(inviter: user) }
+  scope :by_accepter, ->(user) { where(accepter: user) }
 end
