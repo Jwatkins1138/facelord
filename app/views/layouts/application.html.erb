@@ -11,88 +11,12 @@
   </head>
   <body>
   <% if user_signed_in? || current_page?(controller: 'devise/registrations', action: 'new') %>
-  <section class='hero is-primary is-medium'>
-    <div class="hero-head">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <p class='title'>
-              <%= link_to 'facelord', root_path %>
-            </p>
-          </div>
-          <div id="navbarMenuHeroA" class="navbar-menu">
-            <div class="navbar-end">
-              <%= link_to 'logout', destroy_user_session_path, class: 'navbar-item' %>
-              <% if user_signed_in? %>
-                <%= link_to 'my profile', user_path(current_user), class: 'navbar-item' %>
-              <% end %>  
-              <%= link_to 'new post', new_post_path, class: 'navbar-item' %>
-              <a class="navbar-item">
-                <div class='icon-text'>
-                  <span class='icon has-text-success'><i class="fa-thin fa-square-up-right" aria-hidden='true' ></i></span>
-                </div>  
-              </a>
-            </div>
-          </div>  
-        </div>
-      </nav>
-    </div>      
-  </section>
+    <%= render 'layouts/standard' %>
   <div class='container'>
     <%= yield %>
-  </div>  
+  </div>
+  <% else %>
+    <%= render 'layouts/splash' %>  
+  <% end %>    
   </body>
-  <% else%>
-  <section class='hero is-black is-fullheight'>
-    <div class='hero-head'>
-      <p class='title'>facelord</p>
-    </div>
-    <div class='hero-body'>
-      <div class='section'>
-      <div class='container'>
-      <div class='columns is-centered'>
-      <div class='column is-4'>
-      <h4 class='title is-2'>Log in</h4>
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class='field'>
-            <div class='control'>
-            <%= f.input :email,
-                        required: true,
-                        autofocus: true,
-                        input_html: { class: 'input' },
-                        wrapper: false,
-                        label: false,
-                        placeholder: 'email' %>
-                        
-            </div>
-          </div>    
-          <div class='field'>
-            <div class='control'>
-            <%= f.input :password,
-                        required: true,
-                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                        input_html: { class: 'input' },
-                        wrapper: false,
-                        label: false,
-                        placeholder: 'password'  %>
-            </div>
-          </div>  
-          <div class='field'>
-            <div class='control'>  
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-            </div>
-          </div>
-          <div class='field'>
-            <div class='control'>  
-            <%= f.button :submit, "Log in", class: 'button is-primary' %>
-            </div>
-          </div>  
-        <% end %>
-        <%= render "devise/shared/links" %>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-  <% end %>
 </html>

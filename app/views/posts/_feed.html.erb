@@ -1,16 +1,19 @@
 <% @posts.each do |p| %>
-<div id='feed_card' class='card has-background-black has-text-white px-5 pt-5 pb-5'>
+<div class='card has-background-black has-text-white px-5 pt-5 pb-5'>
+  <%= link_to user_path(p.user) do %>
   <div class='card-header'>
+    
     <div class="card-image">
       <figure class="image is-64x64">
-        <img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder image">
+        <%= gravatar_image_tag(p.user.email, size: 64, alt: p.user.name ) %> 
       </figure>
     </div>
     <p class='card-header-title has-text-white'>
-      <%= p.user.email %>
+      <%= p.user.name %>
     </p>
-     
-  </div>  
+    
+  </div>
+  <% end %>   
   <div class='card-content'>
     <p>
       <%= p.body %>

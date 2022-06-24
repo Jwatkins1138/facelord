@@ -1,0 +1,27 @@
+<section class='hero is-primary is-medium'>
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <p class='title'>
+            <%= link_to 'facelord', root_path %>
+          </p>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            <%= link_to 'logout', destroy_user_session_path, class: 'navbar-item' %>
+            <% if user_signed_in? %>
+              <%= link_to 'my profile', user_path(current_user), class: 'navbar-item' %>
+            <% end %>  
+            <%= link_to 'new post', new_post_path, class: 'navbar-item' %>
+            <a class="navbar-item">
+              <div class='icon-text'>
+                <span class='icon has-text-success'><i class="fa-thin fa-square-up-right" aria-hidden='true' ></i></span>
+              </div>  
+            </a>
+          </div>
+        </div>  
+      </div>
+    </nav>
+  </div>      
+</section>

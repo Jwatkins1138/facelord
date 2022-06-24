@@ -1,8 +1,7 @@
-<% if user_signed_in? %>
-<aside class='menu has-background-black has-text-white'>
+<aside class='menu has-background-black has-text-white pt-5'>
   <p class='menu-label'>pending friend requests
   </p>
-  <% current_user.friendships.pending.each do |f| %>
+  <% @user.friendships.pending.each do |f| %>
     <div class='card has-background-black has-text-white'>
       <div class='card-header'>
       <%= link_to user_path(f.inviter) do %>
@@ -24,6 +23,4 @@
       </div>  
     </div>
   <% end %>
-</aside>  
-<% end %>
-
+</aside>

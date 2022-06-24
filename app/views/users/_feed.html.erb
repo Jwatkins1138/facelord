@@ -1,24 +1,38 @@
+<div class='level'>
+</div>
 <div class='columns is-multiline'>
   <% @users.each do |u| %>
-    <div class='column'>
+  <div class='column is-one-quarter'>  
+    <div class='card has-background-black has-text-white'>
       <div class='card-header'>
+      <%= link_to user_path(u) do %>
         <div class="card-image">
           <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder image">
+            <%= gravatar_image_tag(u.email, size: 64, alt: u.name ) %>
           </figure>
         </div>
         <p class='card-header-title has-text-white'>
           <%= u.name %>
         </p>
+      <% end %>
+      </div>  
+      <div class='card-footer'>
         <% if current_user.pending_accept_friends.include?(u) %>
-          <%# need to pull related friendship object %>
-          <%= button_to 'accept', accept_friend_path(current_user.friendships.by_inviter(u).first), method: :post %>
-        <% elsif current_user.pending_invite_friends.include?(u)%>
-          <%= button_to 'invited' %>
+        <div class='card-footer-item'>
+          <%= button_to 'accept', accept_friend_path(current_user.friendships.by_inviter(u).first), method: :post, class: 'button is-success' %>
+          <%= button_to 'reject', destroy_friendship_path(current_user.friendships.by_inviter(u).first), method: :post, class: 'button is-danger' %>
+        </div>
+        <% elsif current_user.pending_invite_friends.include?(u)%>  
+        <div class='card-footer-item'>
+          <button class='button is-static'>invited</button>
+        </div>
         <% else %>
-          <%= button_to 'add friend', request_friend_path(u), method: :post %>
+        <div class='card-footer-item'>  
+          <%= button_to 'add friend', request_friend_path(u), method: :post, class: 'button is-info' %>
+        </div>  
         <% end %>  
       </div>  
     </div>
+  </div>
   <% end %>
 </div>  

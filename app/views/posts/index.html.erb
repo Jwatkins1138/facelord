@@ -1,9 +1,26 @@
 <div class='columns px-5 pt-5'>
   <div class='column'>
-    <%= render 'left'%>
+    <%= render 'left' %>
   </div>
-  <div class='column is-three-fifths'>  
-    <%= render 'feed'%>
+  <% if user_signed_in? %>
+  <div class='column is-three-fifths'>
+    <div class='card has-background-black has-text-success'>
+      <div class='card-header'>
+        <div class="card-image">
+          <figure class="image is-64x64">
+            <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name ) %> 
+          </figure>
+        </div>
+        <p class='card-header-title has-text-white'>
+          <%= current_user.name %>'s feed
+        </p>
+      </div>
+    </div>
+    <%= render 'form' %>
+    <div class='level'>
+    <% end %>
+    </div>  
+    <%= render 'feed' %>
   </div>
   <div class='column'>
     <%= render 'right' %>

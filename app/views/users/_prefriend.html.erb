@@ -1,0 +1,23 @@
+<div class='card px-5 pt-5'>
+  <div class='card-header'>
+    <p class='card-header-title'>
+    you must be friends with <%= @user.name %> to view thier profile.
+    </p>
+  </div>
+  <div class='card-footer'>
+    <% if current_user.pending_accept_friends.include?(@user) %>
+    <div class='card-footer-item'>
+      <%= button_to 'accept', accept_friend_path(current_user.friendships.by_inviter(@user).first), method: :post, class: 'button is-success' %>
+      <%= button_to 'reject', destroy_friendship_path(current_user.friendships.by_inviter(@user).first), method: :post, class: 'button is-danger' %>
+    </div>
+    <% elsif current_user.pending_invite_friends.include?(@user)%>  
+    <div class='card-footer-item'>
+      <button class='button is-static'>invited</button>
+    </div>
+    <% else %>
+    <div class='card-footer-item'>  
+      <%= button_to 'add friend', request_friend_path(@user), method: :post, class: 'button is-info' %>
+    </div>  
+    <% end %>  
+  </div>  
+</div>
