@@ -1,14 +1,11 @@
 <aside class='menu has-background-black has-text-white'>
   <p class='menu-label'>
-  left nav longer title to test
+  where would you like to go
   </p>
   <ul class='menu-list has-text-success'>
     <li><%= link_to 'find friends', users_path, class: 'has-text-success' %></li>
-    <li><a class='has-text-success'>other stuff</a></li>
-    <li><a class='has-text-success'>other stuff</a></li>
-    <li><a class='has-text-success'>other stuff</a></li>
-    <li><a class='has-text-success'>other stuff</a></li>
-    <li><a class='has-text-success'>other stuff</a></li>
-   
+    <li><%= link_to 'view my profile', user_path(current_user), class: 'has-text-success' %></li>
+    <li><%= link_to 'see my friends', user_friends_path(current_user), class: 'has-text-success' %></li>
+    <li><%= link_to 'edit my profile', edit_user_path(current_user), class: 'has-text-success' %></li>
   </ul>
 </aside>    

@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @users = (User.all.excluding(current_user.friends, current_user))
   end
 
+  def friends_index
+    @user = User.find(params[:user_id])
+    @friends = @user.friends 
+  end
+
   def edit
     @user = User.find(params[:id])
   end

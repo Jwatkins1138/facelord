@@ -2,11 +2,13 @@
 <div class='level'>
 </div>
 <article class="media has-background-black has-text-white px-5 pt-5">
+  <%= link_to user_path(@post.user) do %>
   <figure class="media-left">
     <p class="image is-64x64">
       <%= gravatar_image_tag(@post.user.email, size: 64, alt: @post.user.name ) %>
     </p>
   </figure>
+  <% end %>
   <div class="media-content">
     <div class="content">
       <p class='is-success'>
@@ -36,11 +38,13 @@
     </div>
     <% @post.comments.each do |c|%>
     <article class="media has-background-black has-text-white px-5 pt-5">
+      <%= link_to user_path(c.user) do %>
       <figure class="media-left">
         <p class="image is-48x48">
           <%= gravatar_image_tag(c.user.email, size: 64, alt: c.user.name ) %>
         </p>
       </figure>
+      <% end %>
       <div class="media-content">
         <div class="content">
           <p>

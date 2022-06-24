@@ -2,6 +2,15 @@
 <aside class='menu has-background-black has-text-white'>
   <p class='menu-label'>pending friend requests
   </p>
+  <% if current_user.friendships.pending.empty? %>
+    <div class='card has-background-black has-text-white'>
+      <div class='card-header'>
+        <p class='card-header-title'>
+        no new friend requests
+        </p>
+      </div>
+    </div>    
+  <% end %>
   <% current_user.friendships.pending.each do |f| %>
     <div class='card has-background-black has-text-white'>
       <div class='card-header'>
