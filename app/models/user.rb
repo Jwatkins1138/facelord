@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :post_likes
   has_many :liked_posts, :through => :post_likes, :source => :post
   has_many :friendships, :foreign_key => :accepting_friend_id
-  
+  has_many :friendships, :foreign_key => :inviting_friend_id 
 
   has_and_belongs_to_many :invited_friends,
                 class_name: 'User',
