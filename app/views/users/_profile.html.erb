@@ -28,15 +28,15 @@
         <span class='has-text-danger'>♡</span>
       <% end %>  
     <% end %>
-    <p class='has-text-danger'>likes: <%= p.post_likes.count %></p>
+    <p class='has-text-danger'><%= p.post_likes.count %></p>
     </div>
     <div class='card-footer-item'>
       <%= button_to '💬', new_post_comment_path(p), method: :get, class: 'button is-black has-text-success' %>
-      <p>comments: <%= p.comments.count %></p> 
+      <p><%= p.comments.count %></p> 
     </div>
     <div class='card-footer-item'>
       <%= button_to '👁', post_path(p), method: :get, class: 'button is-black has-text-info' %>
-      <p class='has-text-info'>view post</p>
+      <p class='has-text-info'></p>
     </div>  
   </div>  
 </div>
