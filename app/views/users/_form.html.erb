@@ -47,6 +47,7 @@
     <%= f.input :birthday,
                 autofocus: true,
                 input_html: { class: 'date' },
+                start_year: Date.today.year - 125,
                 wrapper: false,
                 label: false,
                 placeholder: 'birthday' %>
