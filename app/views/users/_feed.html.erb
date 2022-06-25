@@ -22,7 +22,7 @@
           <%= button_to 'accept', accept_friend_path(current_user.friendships.pending.by_inviter(u).first), method: :post, class: 'button is-success' %>
           <%= button_to 'reject', destroy_friendship_path(current_user.friendships.pending.by_inviter(u).first), method: :post, class: 'button is-danger' %>
         </div>
-        <% elsif current_user.pending_invite_friends.include?(u)%>  
+        <% elsif current_user.friendships.pending.by_accepter(u).first.present? %>  
         <div class='card-footer-item'>
           <button class='button is-static'>invited</button>
         </div>
