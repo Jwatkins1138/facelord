@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :post_likes
   has_many :liked_posts, :through => :post_likes, :source => :post
+
   has_many :friendships, :foreign_key => :accepting_friend_id
   has_many :friendships, :foreign_key => :inviting_friend_id 
 
@@ -22,22 +23,33 @@ class User < ApplicationRecord
                 association_foreign_key: :inviting_friend_id              
   
                  
+  def pending_invite_friends
+    (invited_friends.joins(:friendships).merge(Friendship.pending))
+  end
+
+  def confirmed_invite_friends
+    (invited_friends.joins(:friendships).merge(Friendship.accepted))
+  end
+
+  def pending_accept_friends
+    (accepted_friends.joins(:friendships).merge(Friendship.pending))
+  end
+
+  def confirmed_accept_friends
+    (accepted_friends.joins(:friendships).merge(Friendship.accepted))
+  end
 
   def friends
-    (invited_friends.joins(:friendships).merge(Friendship.accepted) + accepted_friends.joins(:friendships).merge(Friendship.accepted)).flatten.uniq
+    (confirmed_invite_friends + confirmed_accept_friends).flatten.uniq
   end
 
   def feed
     (self.friends << self)
   end
 
-  def pending_invite_friends
-    (invited_friends.joins(:friendships).merge(Friendship.pending))
-  end
+  
 
-  def pending_accept_friends
-    (accepted_friends.joins(:friendships).merge(Friendship.pending))
-  end
+  
 
 
   # Include default devise modules. Others available are:

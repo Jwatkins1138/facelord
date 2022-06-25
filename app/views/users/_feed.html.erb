@@ -17,10 +17,10 @@
       <% end %>
       </div>  
       <div class='card-footer'>
-        <% if current_user.friendships.pending.by_inviter(u).first.present? %>
+        <% if u.friendships.pending.by_accepter(current_user).first.present? %>
         <div class='card-footer-item'>
-          <%= button_to 'accept', accept_friend_path(current_user.friendships.pending.by_inviter(u).first), method: :post, class: 'button is-success' %>
-          <%= button_to 'reject', destroy_friendship_path(current_user.friendships.pending.by_inviter(u).first), method: :post, class: 'button is-danger' %>
+          <%= button_to 'accept', accept_friend_path(u.friendships.pending.by_accepter(current_user).first), method: :post, class: 'button is-success' %>
+          <%= button_to 'reject', destroy_friendship_path(u.friendships.pending.by_accepter(current_user).first), method: :post, class: 'button is-danger' %>
         </div>
         <% elsif current_user.friendships.pending.by_accepter(u).first.present? %>  
         <div class='card-footer-item'>

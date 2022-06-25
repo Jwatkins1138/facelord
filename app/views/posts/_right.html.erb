@@ -2,7 +2,7 @@
 <aside class='menu has-background-black has-text-white'>
   <p class='menu-label'>pending friend requests
   </p>
-  <% if current_user.friendships.pending.empty? %>
+  <% if current_user.pending_invite_friends.empty? && current_user.pending_accept_friends.empty? %>
     <div class='card has-background-black has-text-white'>
       <div class='card-header'>
         <p class='card-header-title'>
@@ -11,39 +11,39 @@
       </div>
     </div>    
   <% end %>
-  <% current_user.friendships.pending.each do |f| %>
-    <% if f.inviter != current_user %>
+  <% current_user.pending_accept_friends.each do |f| %>
     <div class='card has-background-black has-text-white'>
       <div class='card-header'>
-      <%= link_to user_path(f.inviter) do %>
+      <%= link_to user_path(f) do %>
         <div class="card-image">
           <figure class="image is-64x64">
-            <%= gravatar_image_tag(f.inviter.email, size: 64, alt: f.inviter.name ) %>
+            <%= gravatar_image_tag(f.email, size: 64, alt: f.name ) %>
           </figure>
         </div>
         <p class='card-header-title has-text-white'>
-          <%= f.inviter.name %>
+          <%= f.name %>
         </p>
       </div>
       <% end %>  
       <div class='card-footer'>
         <div class='card-footer-item'>
-          <%= button_to 'accept', accept_friend_path(f), method: :post, class: 'button is-success' %>
-          <%= button_to 'reject', destroy_friendship_path(f), method: :post, class: 'button is-danger' %>
+          <%= button_to 'accept', accept_friend_path(f.friendships.pending.by_accepter(current_user).first), method: :post, class: 'button is-success' %>
+          <%= button_to 'reject', destroy_friendship_path(f.friendships.pending.by_accepter(current_user).first), method: :post, class: 'button is-danger' %>
         </div>
       </div>  
     </div>
-    <% else %>
+  <% end %>
+  <% current_user.pending_invite_friends.each do |f| %>
     <div class='card has-background-black has-text-white'>
       <div class='card-header'>
-      <%= link_to user_path(f.accepter) do %>
+      <%= link_to user_path(f) do %>
         <div class="card-image">
           <figure class="image is-64x64">
-            <%= gravatar_image_tag(f.accepter.email, size: 64, alt: f.accepter.name ) %>
+            <%= gravatar_image_tag(f.email, size: 64, alt: f.name ) %>
           </figure>
         </div>
         <p class='card-header-title has-text-white'>
-          <%= f.accepter.name %>
+          <%= f.name %>
         </p>
       </div>
       <% end %>  
@@ -55,5 +55,4 @@
     <% end %>
   <% end %>
 </aside>  
-<% end %>
 
