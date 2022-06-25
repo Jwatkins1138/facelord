@@ -1,4 +1,4 @@
-<% @user.posts.order(created_at: :asc).each do |p| %>
+<% @user.posts.order(created_at: :desc).each do |p| %>
 <div id='feed_card' class='card has-background-black has-text-white px-5 pt-5 pb-5'>
   <div class='card-header'>
     <div class="card-image">
