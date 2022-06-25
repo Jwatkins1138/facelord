@@ -32,6 +32,11 @@
           <%= button_to '💬', new_post_comment_path(@post), method: :get, class: 'button is-black has-text-success' %>
           <p class='has-text-success'>comments: <%= @post.comments.count %></p>
         </div>
+        <% if @post.user == current_user %>
+        <div class='card-footer-item' >
+          <%= button_to '🗑', destroy_post_path(@post), method: :post, class: 'button is-black has-text-link' %>
+        </div>
+        <% end %>
         </div>
         </div>
       </p>
