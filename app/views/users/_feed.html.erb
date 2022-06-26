@@ -1,6 +1,37 @@
 <div class='level'>
 </div>
-<div class='columns is-multiline'>
+<div class='columns'>
+  <div class='column is-one-quarter'>
+    <div class='field'>
+      <div class='control'>
+      <%= form_with url: users_path, method: :get do |f| %>
+        <%= f.label name='search[name]', 'search for users by name', class: 'label has-text-white' %>
+        <%= f.text_field name ='search[name]', class: 'input' %>
+      </div>
+    </div>
+    <div class='field is-horizontal'>
+      <div class='control'>    
+        <%= f.submit 'search', class: 'button is-black has-text-success'%>
+      <% end %>
+      </div>
+      <div class='control'>
+        <%= button_to 'see all', users_path, method: :get, class: 'button is-success has-text-black' %>
+      </div>
+    </div>
+  </div>
+</div>  
+<div class='columns is-multiline'>  
+<% if @users.empty? %>
+  <div class='column is-one-quarter'>
+    <div class='card has-background-warning'>
+      <div class='card-header'>
+        <p class='card-header-title has-text-danger'>
+        no users to show
+        </p>
+      </div>
+    </div>
+  </div>  
+<% end %>
   <% @users.each do |u| %>
   <div class='column is-one-quarter'>  
     <div class='card has-background-black has-text-white'>

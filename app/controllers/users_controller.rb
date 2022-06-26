@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = (User.all.excluding(current_user.friends, current_user))
+    @search = params['search']
+    if @search.present?
+      @users = User.where('name = ?', @search['name'])
+    else
+      @users = (User.all.excluding(current_user.friends, current_user))
+    end
   end
 
   def friends_index
