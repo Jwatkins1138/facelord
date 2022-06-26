@@ -34,9 +34,7 @@
             </div>
           </div>  
           <div class='field'>
-            <div class='control'>  
-            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-            </div>
+            <%= f.input :remember_me, class: 'checkbox is-black', as: :boolean if devise_mapping.rememberable? %>
           </div>
           <div class='field is-horizontal'>
             <div class='control'>  
