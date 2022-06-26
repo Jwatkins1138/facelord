@@ -50,6 +50,8 @@ gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
+gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
 
 
 # Use Sass to process CSS

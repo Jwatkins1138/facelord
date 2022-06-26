@@ -38,13 +38,23 @@
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
             </div>
           </div>
-          <div class='field'>
+          <div class='field is-horizontal'>
             <div class='control'>  
-            <%= f.button :submit, "Log in", class: 'button is-primary' %>
+            <%= f.button :submit, "log in", class: 'button is-primary' %>
             </div>
-          </div>  
         <% end %>
-        <%= render "devise/shared/links" %>
+            <div class='control'>
+            <%= button_to 'sign up', new_user_registration_path, method: :get, class: 'button is-white has_text-priimary' %>
+            </div>
+        </div>
+        <div class='level has-background-black has-text-centered has-text-white pt-5'>
+          <p>- or -</p>
+        </div>  
+        <div class='field'>
+          <div class='control'>
+          <%= button_to 'sign in with facebook', user_facebook_omniauth_authorize_path, class: 'button is-info' %>
+          </div>
+        </div>
         </div>
       </div>
     </div>
