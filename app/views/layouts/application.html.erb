@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-  <% if user_signed_in? || current_page?(controller: 'devise/registrations', action: 'new') %>
+  <% if user_signed_in? || current_page?(controller: 'users/registrations', action: 'new') %>
     <%= render 'layouts/standard' %>
   <div class='container'>
     <%= yield %>

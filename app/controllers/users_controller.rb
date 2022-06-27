@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  after_create :send_welcome
+
   def show
     @user = User.find(params[:id])
   end
@@ -25,6 +28,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update((user_params))
     redirect_to user_path(@user)
+    UserMailer.with(user: @user).welcome_email.deliver_later
+  end
+
+  def send_welcome
+    @user = curent_user
+    UserMailer.with(user: @user).welcome_email.deliver_later
   end
 
   def request_friend

@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Facelord is an exhibitionary social media app made with Ruby on Rails which also utilizes devise and omniauth for user/session registrations and verifications.
 
-Things you may want to cover:
+initial version deployed via heroku:
 
-* Ruby version
+peaceful-thicket-85921.herokuapp.com
 
-* System dependencies
+2022 jason watkins
 
-* Configuration
+completed for the lessson: 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
