@@ -12,7 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    UserMailer.welcome_email(resource).deliver unless resource.invalid?
+    # disabling mailer pending sendgrid addon
+    # UserMailer.welcome_email(resource).deliver unless resource.invalid?
   end
 
   # GET /resource/edit
